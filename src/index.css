@@ -1,0 +1,144 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.app-main {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(55, 55, 55, 1);
+}
+
+.app-brand {
+    position: absolute;
+    top: 0vh;
+    left: 0;
+    right: 0;
+    bottom: 10vh;
+
+    text-align: center;
+    overflow: hidden;
+    padding: 2.5%;
+
+
+}
+
+.app-brand-title {
+    display: inline;
+    font-family: "Roboto Black", cursive;
+    color: rgba(255,255,255,1);
+    font-size: 3.5em;
+    font-variant: titling-caps;
+    font-weight: 700;
+    font-stretch: ultra-expanded;
+    text-decoration-thickness: 6px;
+
+    animation: expand-all 6s ease-in-out forwards;
+
+}
+.box {
+    display: inline-block;
+    Transform: scale(1.2, 1.2);
+    text-shadow: 0 0 25px rgba(255, 255, 255, 1);
+    animation: gravity-box 4s cubic-bezier(0.190, 1.000, 0.220, 1.000),
+    spin-box 20s ease-in-out infinite alternate 6s;
+
+
+}
+@keyframes expand-all {
+    from {
+        font-stretch: ultra-condensed;
+        text-shadow: 0 0 30px rgba(255, 255, 55, .7);
+        color: rgba(55, 55, 255, .4);
+        opacity: 0;
+        text-decoration: rgba(255, 155,55, 0);
+        text-decoration-line: underline;
+        text-decoration-thickness: 0;
+        Transform: scale(1,1) perspective(0);
+    }
+    to {
+        font-stretch: ultra-expanded;
+        text-shadow: 0px 0 20px rgba(255, 55, 255, .7);
+        color: rgba(255, 255, 255, 1);
+        opacity: 1;
+        Transform: scale(2, 2.3) skewX(30deg) perspective(1500px);
+        text-decoration: rgba(255, 155,55, 1);
+        text-decoration-line: underline;
+        text-decoration-thickness: 5px;
+        text-decoration-skip-ink: none;
+        text-decoration-style: double;
+    }
+}
+@keyframes gravity-box {
+    0% {
+        position: relative;
+        text-shadow: 0 0 30px rgba(255, 255, 255, 1);
+        top: -200%;
+        Transform: scale(1, 1) rotateY(600deg) perspective(0px);
+
+
+    }
+    90% {
+        position: relative;
+        Transform: scale(2, 2) rotateY(10deg) perspective(1200px);
+        text-shadow: 0 0 25px rgba(255, 255, 255, 1);
+        top: 0;
+        padding: 2.5%;
+    }
+    100% {
+        position: unset;
+        padding: 0;
+        margin:0;
+        Transform: scale(2.5, 2.2) rotateZ(90deg) rotateY(-30deg);
+        text-shadow: 0 0 30px rgba(255,255,255,.5);
+
+    }
+}
+.decX {
+    display: inline-block;
+    color: rgba(255, 155, 55, 1);
+    animation: broken-x 5s ease-out forwards 1s;
+
+
+}
+@keyframes spin-box {
+    from {
+        Transform: scale(1.2, 1.2) rotateZ(0deg);
+    }
+    to {
+        Transform: scale(1.2, 1.2) rotateZ(360deg);
+    }
+}
+ @keyframes broken-x {
+     from {
+         color: rgba(255, 55, 55, 0);
+         display: inline-block;
+         Transform: scale(0, 0) rotateZ(-180deg) rotateY(300deg) translateZ(5px);
+         opacity: 0;
+     }
+     to {
+
+         display: inline-block;
+
+         Transform: scale(1.2, 1.7) rotateZ(1deg) rotateY(0);
+         opacity: 1;
+
+
+     }
+ }
+
+ .app-panel {
+     position: absolute;
+     top: 25vh;
+     bottom:0;
+     right: 0;
+     left: 0;
+     background-color: rgba(55, 55, 255, 1);
+     border-top: 10px double rgba(255, 155,55, 1);
+ }
+
+ .

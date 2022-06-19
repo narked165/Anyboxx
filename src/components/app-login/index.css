@@ -1,0 +1,89 @@
+.app-login {
+    position: absolute;
+    top: 20vh;
+    bottom: 5vh;
+    left: 10vw;
+    right: 10vw;
+    background-color: rgba(255, 255, 55, 1);
+    font-family: "Roboto", sans-serif;
+    color: rgba(55,55,55,1);
+    font-size: 1.4em;
+    padding: 2.5%;
+}
+
+.t-login-title {
+    text-align: center;
+    padding: 2.5%;
+    color: rgba(55, 55, 55, 1);
+    font-size: 1.7em;
+    font-variant: titling-caps;
+}
+.c-login-username {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 30%;
+}
+.l-login-username {
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+}
+.i-login-username {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.o-login-username {
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+.c-login-password {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 30%;
+}
+
+.l-login-password {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start:1;
+    grid-row-end:2
+}
+
+.i-login-password {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.o-login-password {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start:1;
+    grid-row-end:2
+}
+
+.c-login-navigation {
+
+}
+
+.b-login-submit {
+
+}
+
+.b-login-clear {
+
+}
+
+.c-login-support {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 30%;
+}
+
+.a-login-new-account {
+
+}
+
+.a-login-forgot {
+
+}
