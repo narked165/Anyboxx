@@ -22,4 +22,11 @@ webs.use('/a/translateComponent', async (responseStream, data) => {
         webs.emit('error', e)
     }
 })
+
+webs.use('/a/verifyCredentials', async (responseStream, data) => {
+    let { body } = await data
+    let { POST_USERNAME, POST_PASSWORD, POST_SERVER_URL } = body
+
+    responseStream.end(JSON.stringify({ value: 'whatever'} ))
+})
 webs.listen(webs.config.server_port, webs.config.server_address)
