@@ -29,7 +29,7 @@
 
 .app-brand-title {
     display: inline;
-    font-family: "Roboto Black", cursive;
+    font-family: "Roboto Black", sans-serif;
     color: rgba(255,255,255,1);
     font-size: 3.5em;
     font-variant: titling-caps;

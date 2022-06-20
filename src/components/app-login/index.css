@@ -1,27 +1,62 @@
 .app-login {
     position: absolute;
-    top: 20vh;
-    bottom: 5vh;
+    top: 10vh;
+    bottom: 10vh;
     left: 10vw;
     right: 10vw;
-    background-color: rgba(255, 255, 55, 1);
+    background-color: rgba(55, 55, 255, 1);
     font-family: "Roboto", sans-serif;
-    color: rgba(55,55,55,1);
-    font-size: 1.4em;
-    padding: 2.5%;
+    color: rgba(255,255,255,1);
+    font-size: 1.2em;
+    padding: 1%;
+    border: 6px double rgba(255, 155, 55, 1);
+    border-radius: 25px;
 }
 
+
+
+
+input {
+    font-size: 1.2em;
+    background-color: rgba(255, 255, 25, 0);
+    border: none;
+    border-bottom: 5px double rgba(255, 155, 55, 1);
+    width: 100%;
+    height: 1.4em;
+    color: rgba(255, 255, 255, .8);
+    text-align: center;
+}
+
+label {
+    font-size: 1.2em;
+    font-variant: petite-caps;
+    margin-left: 20%;
+
+}
+button {
+    width: 20%;
+    text-align: center;
+    padding:1%;
+    font-size: 1em;
+    background-color: rgba(255, 155, 55, 1);
+    color: rgba(255, 255, 255, 1);
+    margin-left: 20%;
+}
 .t-login-title {
     text-align: center;
-    padding: 2.5%;
-    color: rgba(55, 55, 55, 1);
-    font-size: 1.7em;
+    color: rgba(255, 155, 55, 1);
+    font-size: 1.8em;
     font-variant: titling-caps;
+    padding-bottom: 1%;
+
 }
 .c-login-username {
     display: grid;
     grid-template-columns: 30% 40% 30%;
-    grid-template-rows: 30%;
+    grid-template-rows: 40%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+
 }
 .l-login-username {
     grid-column-start: 1;
@@ -31,16 +66,25 @@
 .i-login-username {
     grid-column-start: 2;
     grid-column-end: 3;
+
 }
 
 .o-login-username {
     grid-column-start: 3;
     grid-column-end: 4;
+    color: red;
+    font-style: italic;
+    text-align: center;
+    font-size:1.2em;
+
 }
 .c-login-password {
     display: grid;
     grid-template-columns: 30% 40% 30%;
-    grid-template-rows: 30%;
+    grid-template-rows: 40%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+
 }
 
 .l-login-password {
@@ -59,31 +103,58 @@
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start:1;
-    grid-row-end:2
+    grid-row-end:2;
+    color: red;
+    font-style: italic;
+    text-align: center;
+    font-size: 1.2em;
 }
 
-.c-login-navigation {
-
+.c-login-control {
+    padding-bottom: 1%;
+    padding-top: 2%;
 }
 
 .b-login-submit {
 
-}
 
+
+}
+.b-login-submit:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(255, 155, 55, 1)
+}
 .b-login-clear {
 
 }
 
+.b-login-clear:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(255, 155, 55, 1)
+}
+
 .c-login-support {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 30%;
+    padding-top: 1%;
+    text-align: center;
 }
 
 .a-login-new-account {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    display: block;
+    padding-bottom: 1%;
 
 }
 
 .a-login-forgot {
-
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    display: block;
 }
+.a-login-forgot:hover {
+    color: rgba(255, 155, 55, 1)
+}
+.a-login-new-account:hover {
+    color: rgba(255, 155, 55);
+}
+
