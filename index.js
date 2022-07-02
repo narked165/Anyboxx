@@ -3,9 +3,12 @@ const { writeConfig } = require('./svr/write-config')
 const { open, readFile } = require('fs/promises')
 const { pipeline } = require('stream')
 const CURRENT_CONFIG = writeConfig(JSON.stringify(webs.config))
+
+const { CredentialStream } = require('./svr/credential-stream')
 const { join: joinPath } = require('path')
 
-let configStream = CURRENT_CONFIG()
+
+const configStream = CURRENT_CONFIG()
 
 webs.use('/a/translateComponent', async (responseStream, data) => {
     try {
@@ -23,10 +26,5 @@ webs.use('/a/translateComponent', async (responseStream, data) => {
     }
 })
 
-webs.use('/a/verifyCredentials', async (responseStream, data) => {
-    let { body } = await data
-    let { POST_USERNAME, POST_PASSWORD, POST_SERVER_URL } = body
 
-    responseStream.end(JSON.stringify({ value: 'whatever'} ))
-})
 webs.listen(webs.config.server_port, webs.config.server_address)

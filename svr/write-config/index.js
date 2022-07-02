@@ -3,7 +3,7 @@ const { join: joinPath } = require('path')
 
 
 exports.writeConfig = function(config) {
-    let location = joinPath(__dirname, '..', '..', 'src', 'cfg', 'index.json')
+    let location = joinPath(__dirname, '..', '..', 'src', 'cfg', 'index.js')
     let options = {encoding: 'utf-8', flags: 'w', mode: 0o666}
     let configWriter = createWriteStream(location, options)
     configWriter.write(JSON.stringify(config))

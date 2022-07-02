@@ -1,23 +1,29 @@
-export { verifyCredentials as default}
+export { verifyCredentials as default }
 
-async function verifyCredentials(POST_DATA, server_url) {
+
+async function verifyCredentials(credentials) {
+    console.log('verifying credentials...')
+    let location = 'http://127.0.0.1:9044/b/verifyCredentials'
     let options = {
         method: 'post',
         headers: {
-            'Content-Type': 'application/json',
-            'Cors': 'no-cors'
+            'Content-type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
-        body: JSON.stringify(POST_DATA)
+        body: JSON.stringify(credentials)
     }
-    let location = `${ POST_DATA.POST_SERVER_URL }/a/verifyCredentials`
     try {
         let response = await fetch(location, options)
-
+        if (response.ok) {
             let data = await response.json()
-            console.log(data)
+            return await data
+        }
+        else {
+            await Promise.reject(response.statusText)
+        }
     }
 
     catch(e) {
-        console.error(e)
+        await Promise.reject(e)
     }
 }

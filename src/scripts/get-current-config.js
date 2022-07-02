@@ -1,7 +1,7 @@
 export { getCurrentConfig as default }
 
 async function getCurrentConfig() {
-    let location = './cfg/index.json'
+    let location = './cfg/index.js'
     let options = {
         method: 'get',
         headers: {
