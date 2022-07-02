@@ -1,0 +1,148 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: content-box;
+}
+
+.app-main {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right:0;
+    background-color: rgba(55, 55, 255, 1);
+}
+
+.app-brand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom:80vh;
+    background-color: rgba(155, 55, 255, 1);
+    text-align: center;
+    padding: 2.5%;
+}
+
+.app-brand-title {
+    color: white;
+    font-family: "Bradley Hand", cursive;
+    font-size: 3.2em;
+    font-variant: titling-caps;
+    text-shadow: rgba(55, 55, 55, .4) 10px -10px;
+}
+
+.brand-leading {
+    color: rgba(255, 155, 55, 1);
+    Transform: scale(2, 2.5) skew(10deg);
+}
+.rabbit-move {
+    animation: a-rabbit-move 60s ease-out forwards infinite 11s;
+    position: absolute;
+    left: 51vw;
+    top: 8vh;
+    font-size: 1.5em;
+    text-shadow: rgba(55, 55, 55, .4) 10px -10px;
+
+
+}
+.rabbit-hop {
+    position: absolute;
+    border-radius: 50px;
+    background-color: rgba(55, 55, 255, 0);
+    animation: a-rabbit-hop 650ms ease-in-out forwards infinite 11s;
+
+}
+
+.top-hat {
+    font-size: 2.2em;
+    position: relative;
+    animation: squeeze-hat 3s ease-in-out forwards 90ms,
+    poof 22s ease-in-out forwards 3s;
+}
+
+.brand-following {
+    Transform: scale(2.5, 2) skew(0deg);
+
+}
+
+@keyframes a-rabbit-move {
+    0% {
+        Transform: rotateY(0deg) perspective(0px) translate(10px,10px);
+        left: 51vw;
+        text-shadow: rgba(55, 55, 55, .4) 10px -10px;
+
+    }
+
+    25% {
+        Transform: rotateY(0deg) perspective(1250px) translate(25px,25px);
+        left: -5vw;
+        text-shadow: rgba(55, 55, 55, .4) 25px -10px;
+    }
+    26% {
+        Transform: rotateY(180deg) perspective(1260px) translate(26px,26px);
+        left: -5vw;
+        text-shadow: rgba(55, 55, 55, .4) -26px -10px;
+    }
+
+    50% {
+        Transform: rotateY(180deg) perspective(0px) translate(10px,10px);
+        left: 51vw;
+        text-shadow: rgba(55, 55, 55, .4) 10px -10px;
+    }
+
+    75% {
+        Transform: rotateY(180deg) perspective(1250px) translate(25px ,25px);
+        left: 105vw;
+        text-shadow: rgba(55, 55, 55, .4) -25px -10px;
+      }
+    76% {
+        Transform: rotateY(0deg) perspective(1260px) translate(26px, 26px);
+        left: 105vw;
+        text-shadow: rgba(55, 55, 55, .4) -26px -10px;
+    }
+    100% {
+        Transform: rotateY(0deg) perspective(0px) translate(10px,10px);
+        left: 51vw;
+        text-shadow: rgba(55, 55, 55, .4) 10px -10px;
+    }
+}
+@keyframes a-rabbit-hop {
+    from {
+        top: -4vh;
+        Transform: rotateZ(15deg) rotateX(0deg) skew(15deg);
+
+    }
+    to {
+        top: 0vh;
+        Transform: rotateZ(-15deg) rotateX(3deg) skew(-15deg);
+
+    }
+}
+@keyframes squeeze-hat {
+    from {
+        padding: 1% 30%;
+        text-shadow: rgba(55, 55, 55, .4) 10px -10px;
+    }
+    to {
+        padding: 1%;
+        text-shadow: rgba(55, 55, 55, .4) 10px -10px;
+    }
+}
+
+@keyframes poof{
+    0% {
+        position: relative;
+        top: 0;
+
+    }
+    50% {
+        position:relative;
+        top: -20vh;
+    }
+
+    100% {
+        position: relative;
+        top: 0;
+    }
+}

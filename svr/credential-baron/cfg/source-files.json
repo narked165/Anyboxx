@@ -1,0 +1,19 @@
+{
+  "files": {
+    "/favicon.ico": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/favicon.ico",
+    "/index.css": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/index.css",
+    "/index.html": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/index.html",
+    "/index.js": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/index.js",
+    "/cfg/index.json": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/cfg/index.json",
+    "/scripts/camel-case.js": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/scripts/camel-case.js",
+    "/scripts/controller.js": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/scripts/controller.js",
+    "/scripts/get-current-config.js": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/scripts/get-current-config.js",
+    "/scripts/get-current-interfaces.js": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/scripts/get-current-interfaces.js",
+    "/scripts/inject-component-scripts.js": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/scripts/inject-component-scripts.js",
+    "/scripts/transform-component.js": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/scripts/transform-component.js",
+    "/scripts/verify-credentials.js": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/scripts/verify-credentials.js",
+    "/components/app-login/index.css": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/components/app-login/index.css",
+    "/components/app-login/index.html": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/components/app-login/index.html",
+    "/components/app-login/index.js": "/Users/paul/Documents/Anyboxx/svr/credential-baron/src/components/app-login/index.js"
+  }
+}

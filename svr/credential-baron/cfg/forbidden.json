@@ -1,0 +1,3 @@
+{
+  "GET_FORBIDDEN": ["/verify-user", "/add-user", "/query-user", "/modify-user", "/delete-user"]
+}

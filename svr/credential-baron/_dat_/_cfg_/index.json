@@ -1,0 +1,13 @@
+{
+ "user_key_index": {
+   "_key_": "./_dat_/_key_"
+ },
+  "data_path_index": {
+    "_user_": "./_dat_/_username_",
+    "_password_": "./_dat_/_password_",
+    "_app_": "./_dat_/_app_",
+    "_url_": "./_dat_/_url_",
+    "_key_": "./_dat_/_key_"
+  },
+  "user_data_keys": ["_key_", "_user_", "_password_", "_app_", "_url_"]
+}

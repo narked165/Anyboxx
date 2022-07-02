@@ -1,0 +1,6 @@
+{
+  "server_root": "../../src",
+  "server_address": "localhost",
+  "server_port": "9090",
+  "server_url": "http://localhost:9090"
+}

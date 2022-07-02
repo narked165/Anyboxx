@@ -1,0 +1,19 @@
+{
+  "SERVER_DIRECTIVES": {
+    "directives.verify_credentials": "/a/directive/verifyCredentials"
+  },
+
+  "SERVER_CONFIG": {
+      "SERVER_PORT": 9044,
+      "SERVER_PROTOCOL": "http",
+      "SERVER_ADDRESS": "127.0.0.1"
+  },
+
+  "SERVER_HEADERS": {
+    "CONTENT_JSON": "'Content-type': 'application/json'",
+    "ACCEPTS_JSON": "'Accepts': 'application/json"
+  },
+  "USER_FIELDS": {
+    "USERNAME": "this._username"
+  }
+}

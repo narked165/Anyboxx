@@ -1,0 +1,5 @@
+{
+  "POST": ["/verify-user", "/add-user", "/query-user", "/transform-component"],
+  "PUT": ["/modify-user"],
+  "DELETE": ["/delete-user"]
+}
