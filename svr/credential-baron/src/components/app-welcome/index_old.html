@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="index.css" type="text/css" />
+<script src="index.js" type="module"></script>
+
+<div data-role="app-test-template" data-component="app-test-template">
+    <h1 data-role="t-app=temp">${this.tempTitle}</h1>
+    <h2 data-role="s-app-temp">Welcome ${this.firstName}</h2>
+    <form data-role="c-info-uname">
+        <label data-role="l-info-uname"></label>
+        <input data-role="i-info-uname" value="${this.username}" />
+    </form>
+    <form data-role="c-info-fname">
+        <label data-role="l-info-fname"></label>
+        <input data-role="i-info-fname" value="${this.firstNamw}" />
+    </form>
+    <form data-role="c-info-lname">
+        <label data-role="l-info-lname"></label>
+        <input data-role="i-info-lname" value="${this.lastName}" />
+    </form>
+    <form data-role="c-info-password">
+        <label data-role="l-info-password"></label>
+        <input data-role="i-info-password" value="${this.password}" />
+    </form>
+    <form data-role="c-info-email">
+        <label data-role="c-info-email"></label>
+        <input data-role="i-info-email" value="${this.email}" />
+    </form>
+    <form data-role="c-info-update">
+        <button data-role="b-info-update">Update Info</button>
+    </form>
+</div>
