@@ -1,0 +1,126 @@
+Index: svr/credential-baron/src/components/app-welcome/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/svr/credential-baron/src/components/app-welcome/index.js b/svr/credential-baron/src/components/app-welcome/index.js
+--- a/svr/credential-baron/src/components/app-welcome/index.js	
++++ b/svr/credential-baron/src/components/app-welcome/index.js	(date 1658032033959)
+@@ -18,32 +18,27 @@
+ const appTestTemplate = Controller('app-test-template', (appTestTemplate) => {
+     appTestTemplate.on('password-focus', () => {
+         utilPanel.emit('set-active')
+-    })
+-    appTestTemplate.on('password-updated', () => {
+-        oInfoUpdate.emit('message', 'Your password has been updated, successfully.')
+-    })
+-    appTestTemplate.on('info-update', async (POST_DATA) => {
+-        
+     })
+ })
+ const tApptemp  = Controller('t-app-temp',(tAppTemp) => {})
+ const sAppTemp  = Controller('s-app-temp',(sAppTemp) => {})
++
+ //-----------
+-const cInfoUName = Controller('c-info-uname',(cInfoUname) => {})
++const cInfoUname = Controller('c-info-uname',(cInfoUname) => {})
+ const linfoUName  = Controller('l-info-uname',(lInfoUname) => {
+     lInfoUname.innerHTML='Username'
+ })
+ const IInfoUName  = Controller('i-info-uname',(iInfoUName) => {})
+ 
+ //------------
+-const cInfoFName = Controller('c-info-fname',(cInfoUname) => {})
++const cInfoFname = Controller('c-info-fname',(cInfoUname) => {})
+ const lInfoFName = Controller('l-info-fname',(lInfoFName) => {
+     lInfoFName.innerHTML='First Name'
+ })
+ const IinfoFName  = Controller('i-info-fname',(iInfoFName) => {})
+ 
+ // ------------
+-const cInfoLName = Controller('c-info-lname',(cInfoLName) => {})
++const cInfoLname = Controller('c-info-lname',(cInfoLName) => {})
+ const lInfoLName = Controller('l-info-lname',(lInfoLname) => {
+     lInfoLname.innerHTML="Last Name"
+ })
+@@ -73,50 +68,25 @@
+ 
+ // ------------
+ const cInfoUpdate = Controller('c-info-update', (cInfoUpdate) => {})
+-const oInfoUpdate = Controller('o-info-update', (oInfoUpdate) => {
+-    oInfoUpdate.on('message', (msg) => {
+-        oInfoUpdate.classList.add('sd_hint')
+-        oInfoUpdate.innerHTML=msg
+-    })
+-})
++const oInfoUpdate = Controller('o-info-update', (oInfoUpdate) => {})
+ const bInfoUpdate = Controller('b-info-update', (bInfoUpdate) => {
+     bInfoUpdate.innerHTML="Update Info"
+-    bInfoUpdate.setAttribute('type', 'button')
+-    bInfoUpdate.addEventListenet('mousedown', (e) => {
+-        e.preventDefault()
+-        appTestTemplate.emit('info-update', {
+-            POST_USERNAME: iInfoUName.value,
+-            POST_FIRSTNAME: iInfoFName.value,
+-            POST_LASTNAME: iInfoLName.value,
+-            POST_EMAIL: iInfoEmail.value
+-        })
+-    })
+ })
+ 
+ 
+ const utilPanel = Controller('util-panel', (utilPanel) => {
+-    utilPanel.on('error', (e) => oPassIo.emit())
+-    utilPanel.on('set-active', (user) => {
++    utilPanel.on('set-active', () => {
+         utilPanel.classList.add('active-panel')
+         let outputGroup = Object.values(document.querySelectorAll('output')).filter(m => m.dataset.role.startsWith('o-pass'))
+         outputGroup.forEach(m => m.emit('empty-value'))
++        outputGroup.forEach(m => console.log('handle: ' + m.dataset.name + '\n'))
+ 
+     })
+     utilPanel.on('password-submit', async (POST_DATA) => {
+-        utilPanel.on('state-request', (value) => {
+-            POST_DATA.POST_USERNAME=value
+-        })
+-        appMain.emit('request-state', { agent: utilPanel, key: 'username' })
+-
+       try {
+-          let data = (POST_DATA.POST_N_P_MATCH)
+-              ? appMain.emit('password-complete')
+-              : oPassIo.emit('password-reset', 'Your passwords do not match')
+-
+-          data.status
+-              ? appMain.emit('password-complete')
+-              : oPassIo.emit('message', 'Password update failed, please try again.')
+-
++          let data = POST_DATA.POST_N_P_MATCH
++              ? await updatePassword(POST_DATA)
++              : oPassIo.emit('password-reset')
+       }
+       catch (e){
+             await Promise.resolve(e)
+@@ -201,10 +171,6 @@
+     })
+ 
+     const oPassIo = Controller('o-pass-io', (oPassIo) => {
+-        oPassIo.on('error', (e) => {
+-            oPassIo.classList.add('sd_error')
+-            oPassIo.innerHTML = `Error: ${ e }`
+-        })
+         oPassIo.on('empty-value', () => {
+             oPassIo.classList.add('sd_hint')
+             oPassIo.innerHTML = "First, we require your old password."
+@@ -219,11 +185,11 @@
+ 
+     const bPassSubmit = Controller('b-pass-submit', (bPassSubmit) => {
+         bPassSubmit.innerHTML = "Submit Password"
+-        bPassSubmit.setAttribute('type', 'button')
+         bPassSubmit.addEventListener('mousedown', (e) => {
+             e.preventDefault()
+ 
+             utilPanel.emit('password-submit', ({
++                POST_USERNAME: linfoUName.value,
+                 POST_C_PASS: iPass.value,
+                 POST_N_P_MATCH: Boolean(iPassNew0.value === iPassNew1.value),
+                 POST_N_PASS: iPassNew0.value

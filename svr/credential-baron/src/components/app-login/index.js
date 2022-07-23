@@ -15,6 +15,7 @@ const supportDialog = {
 }
 
 const appLogin = Controller('app-login', async appLogin => {
+
     const INTERFACES = await getCurrentInterfaces()
     appLogin.on('new_server_config', config => {
         appLogin.config.serverConfig = config
@@ -23,26 +24,8 @@ const appLogin = Controller('app-login', async appLogin => {
     appLogin.on('empty_field_submit', () => {
 
     })
-    appLogin.on('credential_submit', async () => {
-        let server_url = new URL (`http://${INTERFACES.ipv4Interface.address}:9090`)
+    appLogin.on('error', (e) => io.emit('error', e))
 
-
-        let verify = await verifyCredentials({
-            SERVER_URL: server_url.href,
-            POST_USERNAME: iLoginUsername.value,
-            POST_PASSWORD: iLoginPassword.value,
-        })
-
-
-
-        //console.log(verify)
-
-
-
-
-
-    })
-})
 appLogin.config = {
     set serverConfig(value) {
         this.$SERVER_CONFIG = value
@@ -59,7 +42,7 @@ appLogin.getServerConfig = async function() {
         appLogin.emit('new_server_config', config)
     }
     catch(e) {
-
+        await Promise.reject(e)
     }
 }
 const tLoginTitle = Controller('t-login-title', tLoginTitle => {
@@ -107,12 +90,16 @@ const oLoginPassword = Controller('o-login-password', oLoginPassword => {
 const cLoginControl = Controller('c-login-control', cLoginControl => {
 
 })
-
+const io= Controller('o-io', io => {
+    io.on('clear', () => io.value='')
+    io.on('error', e => { io.classList.add('error'); io.value=e.description })
+})
 const bLoginSubmit = Controller('b-login-submit', bLoginSubmit => {
     bLoginSubmit.innerHTML="Log in"
     bLoginSubmit.setAttribute('type', 'button')
     bLoginSubmit.addEventListener('click', e => {
         e.preventDefault()
+        io.emit('clear')
         appLogin.emit('credential_submit')
     }, false)
 
@@ -139,7 +126,20 @@ const aLoginForgot = Controller('a-login-forgot', aLoginForgot => {
 
 oLoginPassword.emit('empty-field')
 oLoginUsername.emit('empty-field')
-let gconfig = appLogin.getServerConfig()
+/*let gconfig = appLogin.getServerConfig()
 
 gconfig
     .catch(console.error)
+
+ */
+
+    appLogin.on('credential_submit', () => {
+        let server_url = new URL (`http://${INTERFACES.ipv4Interface.address}:9090`)
+
+        appMain.emit('verify-credentials', {
+            SERVER_URL: server_url.href,
+            POST_USERNAME: iLoginUsername.value,
+            POST_PASSWORD: iLoginPassword.value,
+        })
+    })
+})

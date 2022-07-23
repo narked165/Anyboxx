@@ -1,5 +1,13 @@
 {
-  "POST": ["/verify-user", "/add-user", "/query-user", "/transform-component"],
-  "PUT": ["/modify-user"],
+  "POST": [
+    "/verify-user",
+    "/add-user",
+    "/query-user",
+    "/transform-component",
+    "/app-welcome",
+    "/get-user-info",
+    "/khan-web-event"
+  ],
+  "PUT": ["/modify-user", "/update-password"],
   "DELETE": ["/delete-user"]
 }

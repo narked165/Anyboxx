@@ -1,0 +1,112 @@
+.util-app {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    grid-template-rows: repeat(3, 1fr);
+    grid-row-gap: 7.5%;
+    grid-column-gap: 2.55%;
+    padding: 5%;
+    text-align: center;
+}
+
+.util-app div a h3 {
+    color: rgba(255, 255, 165, 1);
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    font-weight: 600;
+    padding: 2%;
+    font-variant: all-petite-caps;
+}
+
+.utility-icons {
+    --fa-primary-color: rgba(255, 155, 55, 1);
+    --fa-secondary-color: rgba(55, 55, 55, .6);
+}
+
+.c-log-agent {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end:2;
+}
+
+.c-server-configuration {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 2;
+    grid-column-end:3;
+}
+
+.c-user-management {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 3;
+    grid-column-end:4;
+}
+
+.c-server-admin {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 4;
+    grid-column-end:5;
+}
+
+.c-error-log {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end:2;
+}
+
+.c-khan-remote {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end:3;
+}
+
+.c-database-toolkit {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 3;
+    grid-column-end:4;
+}
+
+.c-api-docs {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 4;
+    grid-column-end:5;
+}
+
+.c-accessibility-manager {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end:2;
+}
+
+.c-about-credential-baron {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end:3;
+}
+
+.c-network-administration {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 3;
+    grid-column-end:4;
+}
+
+.c-cb-support {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 4;
+    grid-column-end:5;
+}

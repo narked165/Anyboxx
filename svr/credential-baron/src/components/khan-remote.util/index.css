@@ -1,0 +1,109 @@
+textarea.focus, input.focus{
+    outline: none;
+    outline-style: none;
+}
+.khan-remote {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(55, 55, 55, .7);
+    border: none;
+    max-height:100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.c-khan-input {
+    border:none;
+    padding: 0;
+    margin:0;
+    position: relative;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(55, 55, 55, .7);
+    min-height: 25vh;
+
+}
+
+.app-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom:90vh;
+
+}
+
+.app-title {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 85%;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-variant: titling-caps;
+    color: rgba(55, 55, 55, .6);
+    font-weight: 800;
+    font-stretch: semi-expanded;
+    background-color: rgba(255, 55, 110, 1);
+
+}
+
+.khan-output {
+    position: relative;
+    color: rgba(255, 55, 110, 1);
+    font-size: 1.4em;
+    font-family: "DialogInput", "Droid Sans Mono", monospace;
+    padding: 1.5%;
+    overflow-y:scroll;
+    overflow-x: hidden;
+
+    list-style: none;
+
+
+
+}
+.c-khan-prompt {
+    position: relative;
+    top: 0;
+    left:0;
+    right:0;
+    bottom: 0;
+    min-height: 10vh;
+    overflow: hidden;
+
+}
+.khan-prompt {
+    padding: .5%;
+    color: rgba(255, 55, 110, 1);
+    font-family: "DialogInput", "Droid Sans Mono", monospace;
+    font-size: 1.4em;
+    float: left;
+
+
+
+}
+.khan-input {
+    float: right;
+    min-width: 90%;
+    max-width: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+    padding:.5%;
+    color: rgba(255, 55, 110, 1);
+    font-size: 1.4em;
+
+
+    font-family: "DialogInput", "Droid Sans Mono", monospace;
+    outline: none;
+
+
+}
+
+
+

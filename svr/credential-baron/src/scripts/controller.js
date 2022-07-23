@@ -2,6 +2,11 @@ import { default as camelCase } from './camel-case.js'
 export { Controller as default }
 function Controller(role, callback) {
     let ELEMENT = document.querySelector(`[data-role="${ role }"]`)
+
+    if (ELEMENT === null) {
+        console.warn(`Warning: Controller can not consume it's intended Element. The ROLE: ${ role } is likely incorrect.\n`)
+        return
+    }
     ELEMENT.id = camelCase(role)
     ELEMENT.className = role
     ELEMENT.$state = {}
@@ -29,7 +34,6 @@ function Controller(role, callback) {
     ELEMENT.emit = function(handle, data) {
         ELEMENT.events[handle] && ELEMENT.events[handle].forEach(h=> h.call(this, data))
     }
-
     callback(ELEMENT)
     return ELEMENT
 }

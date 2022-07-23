@@ -8,7 +8,7 @@ async function injectComponentScript(componentHandle) {
             'Cors': 'np-cors'
         }
     }
-    let location = `/components/${ componentHandle }/index.js`
+    let location = `/components/${ componentHandle.replace('/', '') }/index.js`
     try {
         let response = await fetch(location, options)
         if(response.ok) {
@@ -16,7 +16,9 @@ async function injectComponentScript(componentHandle) {
             let scriptTag = document.createElement('script')
             scriptTag.innerHTML = await script
             scriptTag.setAttribute('type', 'module')
+            scriptTag.setAttribute('data-role', `${ componentHandle }-script`)
             document.body.append(scriptTag)
+
         }
         else {
             await Promise.reject({ status: response.status, statusText: response.statusText})

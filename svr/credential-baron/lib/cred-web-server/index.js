@@ -10,14 +10,11 @@ const { sourceIndex } = require('../create-soure-file-index')
 const { documentProxy } = require('../response-headers')
 const exconvert = require('exconvert')
 const {getOSInfo} = require('../os-info')
-
-
-
-
-
-
+const { testTemplateStream, testTemplate } = require('../template-stream')
+const { dispatchMediaStream, isMedia } = require('../media-buffer-stream')
 const credentialBaron = CredentialBaron()
 const EN0_INTERFACE = getOSInfo()
+const { khan_remote } = require('../../khan_remote.js')
 
 const creds = createServer()
 const routes = Router('/')
@@ -29,6 +26,11 @@ async function startServices() {
     let files = await routes.init()
     return { userList, files }
 }
+
+
+
+
+
 
 routes.add('/error404', ({ responseStream, sendHeaders, request }) => {
     let errorResponse = `
@@ -43,13 +45,62 @@ routes.add('/error404', ({ responseStream, sendHeaders, request }) => {
     responseStream._transform(errorResponse, 'utf-8', ()=>{})
 })
 
+routes.add('/get-user-info', async ({ responseStream, sendHeaders, body}) => {
+    routes.addExtension('/get-user-info', '.json')
+    sendHeaders('.json')
+    let options = await body
+    await credentialBaron.getAppOptions({ responseStream, options })
+})
+
+// routes tests
+routes.add('/khan-web-event', async ({ responseStream, sendHeaders, body }) => {
+    routes.addExtension('/khan-web-events', '.html')
+    sendHeaders('.html')
+    let { POST_EVENT_STRING } = await body
+    let options = POST_EVENT_STRING.split(' ').filter(k => k)
+
+    await khan_remote.remoteEvent({ responseStream, sendHeaders, options})
+
+})
+routes.add('/app-welcome',  async ({ responseStream, sendHeaders, body}) => {
+    let options = await body
+    await credentialBaron.publishTemplate({ responseStream, sendHeaders, options})
+})
+
 //  routes for the Router
+routes.add('/retrieve-logs', ({ responseStream, sendHeaders}) => {
+    sendHeaders('.html')
+    routes.addExtension('/retrieve-logs', '.html')
+    credentialBaron.getLogs({ responseStream })
+})
+
+routes.add('/update-password', async ({ responseStream, sendHeaders, body }) => {
+    routes.addExtension('/update/password', '.json')
+    sendHeaders('.json')
+    let options = await body
+    await credentialBaron.updatePassword({ responseStream, options })
+})
+
+routes.add('/server-utilities',  ({ responseStream, sendHeaders}) => {
+    sendHeaders('.html')
+    routes.addExtension('/server-utilities', '.html')
+    credentialBaron.serverUtilities({ responseStream })
+})
+
+routes.add('/update-info', async ({ responseStream, sendHeaders, body }) => {
+    routes.addExtension('/update-info', '.json')
+    sendHeaders('.json')
+    let options = await body
+    await credentialBaron.updateInfo({ responseStream, options})
+})
+
 routes.add('/show-routes', ({ responseStream, sendHeaders }) => {
    routes.addExtension('/show-routes','.json')
     sendHeaders('.json')
     let r = routes.show()
     responseStream._transform(r, 'utf-8', ()=>{})
 })
+
 routes.add('/interfaces', async ({ responseStream, sendHeaders, data }) => {
     routes.addExtension('/interfaces', '.json')
     sendHeaders('.json')
@@ -85,7 +136,7 @@ routes.add('/verify-user', ({ responseStream, sendHeaders, body }) => {
 routes.add('/add-user', async ({ responseStream, sendHeaders, body }) => {
     routes.addExtension('/add-user', '.json')
     sendHeaders('.json')
-    let options = {username, password, url, app} = await body
+    let options = {firstname, lastname, email, username, password, url, app} = await body
     let userCreated = await credentialBaron.createUser(options, responseStream)
 })
 
@@ -113,7 +164,13 @@ routes.add('/query-user', async ({ responseStream, sendHeaders, body }) => {
 
 creds.on('GET', async ({ request, response, responseStream }) => {
    let sendHeaders = ResponseHeaders(request, response), data
-
+    if(isMedia(request.url)) {
+        credentialBaron.log('[CREDS_GET] :: Type: is Media')
+        let location = joinPath(__dirname, '..', '..', 'src', request.url)
+        let data = { responseStream, sendHeaders, location }
+        await dispatchMediaStream(data)
+    }
+    else
     if (routes.query(request.url)) {
         data = { responseStream, sendHeaders }
         routes.dispatch(request.url, data)
@@ -126,8 +183,6 @@ creds.on('GET', async ({ request, response, responseStream }) => {
 })
 
 creds.on('POST', async ( { request, response, responseStream } ) => {
-
-
     try {
         let buffer = []
         for await (const chunk of request) {
@@ -136,7 +191,7 @@ creds.on('POST', async ( { request, response, responseStream } ) => {
 
         let postData = Buffer.concat(buffer).toString(),
             body = JSON.parse(await postData)
-        console.log('Body:' + require('util').inspect(body, 1, 5, 1))
+
         let sendHeaders = ResponseHeaders(request, response)
         let data = {responseStream, sendHeaders, body}
 
@@ -158,8 +213,8 @@ catch(e) {
 })
 
 creds.on('PUT', async ( { request, response, responseStream }) => {
-    console.log('POST ' + request.url)
-    let sendHeader = ResponseHeaders(request, response)
+    credentialBaron.log(`[CREDS_PUT] :: PUT ${ request.url }`)
+    let sendHeaders = ResponseHeaders(request, response)
     try {
         let buffer = []
         for await (const chunk of request) {
@@ -170,11 +225,12 @@ creds.on('PUT', async ( { request, response, responseStream }) => {
             body = JSON.parse(postData)
 
         let data = { responseStream, sendHeaders, body }
+
         await routes.dispatch(request.url,  data)
     }
     catch(e) {
         responseStream.end(Buffer.from(`HTTP/1.1  ERROR  403\nFORBIDDEN\nThe url requested: ${ request.url }, can not accept an empty request.\n  `))
-
+        console.warn(e)
     }
 })
 
@@ -202,12 +258,13 @@ creds.on('DELETE', async ({ request, response, responseStream }) => {
 creds.on('error', (e) => console.error(e))
 
 creds.on('listening', () => console.info(`creds listening at http://${ EN0_INTERFACE.ipv4Interface.address }:9090\n`))
-
+creds.on('listening', () => credentialBaron.log('[CREDS_SERVER]: Server is online.'))
 creds.on('request', (request, response) => {
     let responseStream = ResponseStream()
     let data = {request, response, responseStream}
     let METHOD = request.method.toUpperCase()
-    console.log(`INCOMMING REQUEST FOR: ${request.method.toUpperCase()} ${ request.url}`)
+
+    credentialBaron.log(`[CREDS-REQUEST] :: INCOMMING REQUEST FOR: ${request.method.toUpperCase()} ${ request.url}`)
     if (request.method === "GET" || request.method === "get") {
         let isGetForbiddenUrl = credentialBaron.checkGetForbiddenUrl(request)
 
@@ -216,11 +273,11 @@ creds.on('request', (request, response) => {
         }
     }
      else if (METHOD !== 'GET' && !credentialBaron.checkUrlMethodIncomming(request)) {
-            console.log(credentialBaron.checkUrlMethodIncomming(request))
+            credentialBaron.log(credentialBaron.checkUrlMethodIncomming(request))
             response.end(`HTTP/1.1  ERROR  405\nMETHOD NOT ALLOWED\nmethod: ${request.method} is not allowed for the url: ${request.url}\n${new Date().toLocaleTimeString()}`)
     }
 
-            pipeline(
+            pipeline (
                 responseStream,
                 response,
                 () => {
@@ -240,6 +297,7 @@ exports.credServer  = async function() {
 function ResponseHeaders(request, response) {
 
         let client = new URL(`http://${ request.socket.remoteAddress }/${ request.socket.remotePort}`)
+        khan_remote.emit('testypoo', client)
 
 
     return (ext, status) => {

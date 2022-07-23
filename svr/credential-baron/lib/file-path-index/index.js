@@ -14,14 +14,17 @@ exports.createFilePathIndex = async function () {
         let dir = await opendir(r_location, d_options)
         let index = {}
         for await (let d of dir) {
+            console.log(d)
             d_location = joinPath(r_location, d.name)
             fd = await open(d_location, ...r_options)
             data = await fd.readFile('utf-8')
             await fd.close()
             data = JSON.parse(data)
+            console.log(data.path)
             index[d.name] = index[d.name] || data.path
         }
         content = Buffer.from(JSON.stringify(await index, null, 2))
+
         await safeWrite(w_location, content)
         return index
     }

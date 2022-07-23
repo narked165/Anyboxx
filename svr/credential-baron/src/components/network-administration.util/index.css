@@ -1,0 +1,26 @@
+.network-admin-form {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left: 0;
+    right:0;
+    background-color: rgba(55, 55, 255, 1);
+    padding: 2%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr
+}
+
+.util-title {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.7em;
+    font-variant: titling-caps;
+    color: rgba(355, 165, 55, 1);
+    text-align: center;
+    grid-row-start: 1;
+    grid-row-end:2;
+    padding: 1.5%;
+}

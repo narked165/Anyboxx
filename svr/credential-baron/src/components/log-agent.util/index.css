@@ -1,0 +1,38 @@
+.log-agent-util {
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    border: 4px double rgba(255, 165, 55, 1);
+
+}
+.log-agent-title {
+    color: rgba(255, 165, 55, 1);
+    font-family: "Roboto", sans-serif;
+    font-size: 1.5em;
+    font-variant: titling-caps;
+    text-align: center;
+    padding: 1%;
+}
+.log-agent-output {
+    position: absolute;
+    top: 7vh;
+    left: 0;
+    right: 0;
+    bottom: 10vh;
+    color: rgba(55, 255, 165, 1);
+    background-color: rgba(55, 55, 55, .8);
+    overflow: scroll;
+}
+
+.c-log-agent-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20%;
+    background-color: rgba(55, 165, 255, 1);
+    text-align: center;
+    padding: 1%;
+}

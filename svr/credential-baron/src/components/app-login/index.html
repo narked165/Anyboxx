@@ -1,6 +1,6 @@
-<script src="components/app-login/index.js" type="module" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="components/app-login/index.css" type="text/css" />
-<form data-role="app-login">
+<script data-role="app-login-script-tag" src="components/app-login/index.js" type="module" crossorigin="anonymous"></script>
+<link data-role="app-login-styles"rel="stylesheet" href="components/app-login/index.css" type="text/css" />
+<form data-role="app-login" data-component-controller="app-login" data-parent="app-main">
     <h1 data-role="t-login-title"></h1>
     <div data-role="c-login-username">
         <label data-role="l-login-username"></label>
@@ -13,6 +13,7 @@
         <output data-role="o-login-password"></output>
     </div>
     <div data-role="c-login-control">
+        <output data-role="o-io"></output>
         <button data-role="b-login-submit"></button>
         <button data-role="b-login-clear"></button>
     </div>

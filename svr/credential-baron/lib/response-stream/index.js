@@ -4,12 +4,15 @@ exports.ResponseStream = function() {
     let responseStream = Transform({
         readableObjectMode: true,
         writableObjectMode: false,
-        transform(chunk, encoding, callback) {
+        allowHalfOpen: true,
+        transform(chunk, encoding='utf-8', callback) {
             callback()
-            this.push(chunk.toString(encoding))
+            this.push(chunk, encoding)
             this.push(null)
+
         }
     })
     responseStream.on('error', console.warn)
     return responseStream
 }
+

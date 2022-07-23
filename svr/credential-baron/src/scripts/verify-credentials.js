@@ -22,7 +22,28 @@ async function verifyCredentials({SERVER_URL, POST_USERNAME, POST_PASSWORD }) {
         let response = await fetch(location, options)
 
             let data = await response.json()
-            console.log(data)
+
+                let body = JSON.parse(data)
+                let auth = { body, SERVER_URL, POST_USERNAME, POST_APP: app }
+
+                return await verifyData(auth)
+
+
+        async function verifyData(auth) {
+            let { body, SERVER_URL, POST_USERNAME, POST_APP  } = await auth
+            let { username, url, app, verify } = body
+            let authenticated = verify.pop()
+            let authenticate = [
+                username === POST_USERNAME &&
+                url === SERVER_URL &&
+                app === POST_APP &&
+                authenticated
+            ].pop()
+            console.log(username, authenticated)
+            return { username, authenticated }
+        }
+
+
     }
 
     catch(e) {

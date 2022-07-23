@@ -1,155 +1,259 @@
 [
-  {"username": "tharlo",
+  {
+    "firstname": "Thomas",
+    "lastname": "Harlo",
+    "email": "tharlo@test-example.com",
+    "username": "tHarlo",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "mBennett",
+  {
+    "firstname": "Michael",
+    "lastname": "Bennett",
+    "email": "mbennett@test-example.com",
+    "username": "mBennett",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "gKulling",
+  {
+    "firstname": "Guy",
+    "lastname": "Kulling",
+    "email": "gkulling@test-example.com",
+    "username": "gKulling",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "bHoster",
+  {
+    "firstname": "Robert",
+    "lastname": "Holster",
+    "email": "bholster@test-example.com",
+    "username": "bHoster",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "lHorse",
+  {
+    "firstname": "Lawrence",
+    "lastname": "Horsestein",
+    "email": "lhorse@test-example.com",
+    "username": "lHorse",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "aHammersly",
+  {
+    "firstname": "Amanda",
+    "lastname": "Hammersly",
+    "email": "ahammersly@test-example.com",
+    "username": "aHammersly",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "kMontague",
+  {
+    "firstname": "Kyle",
+    "lastname": "Montague",
+    "email": "kmontague@test-example.com",
+    "username": "kMontague",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "rVirso",
+  {
+    "firstname": "Roberta",
+    "lastname": "Virso",
+    "email": "rvirso@test-example.com",
+    "username": "rVirso",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "tNello",
+  {
+    "firstname": "Thom",
+    "lastname": "Nello",
+    "email": "tnello@test-example.com",
+    "username": "tNello",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "bForester",
+  {
+    "firstname": "Barbra",
+    "lastname": "Forrester",
+    "email": "bforrester@test-example.com",
+    "username": "bForester",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "aFrank",
+  {
+    "firstname": "Anthony",
+    "lastname": "Frank",
+    "email": "afrank@test-example.com",
+    "username": "aFrank",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "rLester",
+  {
+    "firstname": "Roger",
+    "lastname": "Lester",
+    "email": "rlester@test-example.com",
+    "username": "rLester",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "annGiavano",
+  {
+    "firstname": "Annette",
+    "lastname": "Giavano",
+    "email": "aGiavano@test-example.com",
+    "username": "aGiavano",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "jPerso",
+  {
+    "firstname": "Jennifer",
+    "lastname": "Perso",
+    "email": "jperso@test-example.com",
+    "username": "jPerso",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "dTorrence",
+  {
+    "firstname": "Derrick",
+    "lastname": "Torrence",
+    "email": "dTtorrence@test-example.com",
+    "username": "dTorrence",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "fHardy",
+  {
+    "firstname": "Fredrick",
+    "lastname": "Hardy",
+    "email": "fhardy@test-example.com",
+    "username": "fHardy",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "kLenoore",
+  {
+    "firstname": "Kennith",
+    "lastname": "Leenoore",
+    "email": "klenoore@test-example.com",
+    "username": "kLenoore",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "lThomas",
+  {
+    "firstname": "Laura",
+    "lastname": "Thomas",
+    "email": "lthomas@test-example.com",
+    "username": "lThomas",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "cFosterson",
+  {
+    "firstname": "Cole",
+    "lastname": "Fosterson",
+    "email": "cfosterson@test-example.com",
+    "username": "cFosterson",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "gOdell",
+  {
+    "firstname": "Gerry",
+    "lastname": "Odell",
+    "email": "godell@test-example.com",
+    "username": "gOdell",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "aRice",
+  {
+    "firstname": "Albert",
+    "lastname": "Rice",
+    "email": "arice@test-example.com",
+    "username": "aRice",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "sFlowers",
+  {
+    "firstname": "Samuel",
+    "lastname": "Flowers",
+    "email": "sflowers@test-example.com",
+    "username": "sFlowers",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "tMcCormic",
+  {
+    "firstname": "Tabitha",
+    "lastname": "McCormic",
+    "email": "tmccormic@test-example.com",
+    "username": "tMcCormic",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "rJefferson",
+  {
+    "firstname": "Ronald",
+    "lastname": "Jefferson",
+    "email": "rjefferson@test-example.com",
+    "username": "rJefferson",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "dCapper",
+  {
+    "firstname": "Douglas",
+    "lastname": "Caper",
+    "email": "dcaper@test-example.com",
+    "username": "dCapper",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"
   },
 
-  {"username": "mFoss",
+  {
+    "firstname": "Maryanne",
+    "lastname": "Foss",
+    "email": "mfoss@test-example.com",
+    "username": "mFoss",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
     "app": "Anyboxx"

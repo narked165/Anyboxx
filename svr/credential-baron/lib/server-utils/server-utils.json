@@ -1,0 +1,62 @@
+{
+  "cb_log_agent": {
+    "app_name": "log-agent",
+    "app_path": "/sys-app/log-agent",
+    "token": "fa-duotone fa-square-list"
+  },
+  "cb_server_config": {
+    "app_name": "server-config",
+    "app_path": "/sys-app/server-config",
+    "token": "fa-duotone fa-server"
+  },
+  "cb_user_management": {
+    "app_name": "user-management",
+    "app_path": "/sys-app/user-management",
+    "token": "fa-duotone fa-user-gear"
+  },
+  "cb_server_admin": {
+    "app_name": "server-admin",
+    "app_path": "/sys-app/server-admin",
+    "token": "fa-duotone fa-screwdriver-wrench"
+  },
+  "cb_error_log": {
+    "app_name": "error-log",
+    "app_path": "/sys-app/error-log",
+    "token": "fa-duotone fa-file-exclamation"
+  },
+  "cb_khan_remote": {
+    "app_name": "khan-remote",
+    "app_path": "/sys-app/khan-remote",
+    "token": "fa-duotone fa-square-terminal"
+  },
+  "cb_database_toolkit": {
+    "app_name": "database-toolkit",
+    "app_path": "/sys-app/database-toolkit",
+    "token": "fa-duotone fa-database"
+  },
+  "cb_api_docs": {
+    "app_name": "api-docs",
+    "app_path": "/sys-app/api-docs",
+    "token": "fa-duotone fa-book-blank"
+  },
+  "cb_accessibility_manager": {
+    "app_name": "accessibility-manager",
+    "app_path": "/sys-app/accessibility-manager",
+    "token": "fa-duotone fa-universal-access"
+  },
+  "cb_about_credential_baron": {
+    "app_name": "about-credential-baron",
+    "app_path": "/sys-app/about-credential-baron",
+    "token": "fa-duotone fa-square-info"
+  },
+  "cb_network_administration": {
+    "app_name": "network-administration",
+    "app_path": "/sys-app/network-administration",
+    "token": "fa-duotone fa-globe"
+  },
+  "cb_support": {
+    "app_name": "cb-support",
+    "app_path": "/sys-app/support",
+    "token": "fa-duotone fa-bug"
+  }
+}

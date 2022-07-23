@@ -13,8 +13,6 @@ const supportDialog = {
 }
 
 const appLogin = Controller('app-login', appLogin => {
-    appLogin.setAttribute('formmethod', 'post')
-    appLogin.setAttribute('action', '/a/verifyUser')
     appLogin.on('new_server_config', config => {
         appLogin.config.serverConfig = config
 
@@ -28,7 +26,7 @@ const appLogin = Controller('app-login', appLogin => {
             POST_SERVER_URL: server_url
         })
 
-        console.log('hork')
+
 
 
 

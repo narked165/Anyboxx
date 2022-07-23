@@ -1,6 +1,6 @@
 const { StaticProxy } = require('../static-proxy')
 const { ResponseHeaders } = require('../response-headers')
-const { parse: parsePath } = require('path')
+const { parse: parsePath, sep } = require('path')
 
 exports.Router = function(root) {
 
@@ -25,15 +25,19 @@ exports.Router = function(root) {
             console.log(`New Route added: ${ route }`)
         },
 
+
         dispatch(route, data) {
-            console.log(`Routes is Dispatching... ${ route }`)
-            this.routes[route] && this.routes[route]
-                .forEach(r => r.call(this, data))
+                console.log(`Routes is Dispatching... ${route}`)
+                this.routes[route] && this.routes[route]
+                    .forEach(r => r.call(this, data))
         },
         remove(route) {
             this.routes[route] && delete this.routes[route]
         },
-
+        once(route, handler) {
+            this.add(route, handler)
+            this.add(route, () => this.remove(route))
+        },
         show() {
             let r = Object.keys(this.routes)
             console.log(r)
@@ -44,9 +48,6 @@ exports.Router = function(root) {
             return route in this.routes
         },
 
-        async addProxyRoutes(routeList) {
-            console.log(routeList)
-        },
 
         addExtension(handle, ext) {
             this.extensions[handle] = this.extensions[handle] || ext
@@ -58,6 +59,10 @@ exports.Router = function(root) {
         selectExtension(handle) {
             return this.extensions[handle]
            },
+
+        _hasHashData(requestUrl) {
+          return requestUrl.includes(`${ sep }#`)
+        },
         async init() {
             try {
                 let fileIndex = await this.staticProxy.init()

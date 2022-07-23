@@ -195,7 +195,7 @@ async function buildIndex(root) {
 exports.sourceIndex = async function(source) {
     try {
         await buildIndex(source)
-        await buildIndex('/components/app-login')
+        await buildIndex('/components')
         await FileIndex.writeFileIndex()
         return FileIndex
     }
