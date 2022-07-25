@@ -8,6 +8,7 @@
     "/get-user-info",
     "/khan-web-event"
   ],
+  "OPTIONS": ["*"],
   "PUT": ["/modify-user", "/update-password"],
   "DELETE": ["/delete-user"]
 }

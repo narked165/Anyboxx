@@ -41,7 +41,7 @@ const _CredentialBaron =  function() {
                 },
 
                 query(value) {
-                    return value in this
+                    return value in this._keys
                 },
 
                 remove(value) {
@@ -567,9 +567,12 @@ function api() {
 
         },
 
-        checkUrlMethodIncomming({ url, method }) {
+        checkUrlMethodIncomming(request) {
+            let { url, method }  = request
             let accept = METHOD[method.toUpperCase()]
+            console.log(method)
             return accept.includes(url)
+
         },
 
         checkGetForbiddenUrl({ url }) {
@@ -705,7 +708,8 @@ function api() {
 
             },
 
-        queryUser(username, responseStream) {
+        queryUser({ responseStream, options }) {
+            let { username } = options
             let queryResponse = CredentialBaron._key_.query(username)
                 let response = JSON.stringify({
                     user: username,
@@ -815,6 +819,33 @@ function api() {
                 logBody = logArray.map(l => `<h4>${ l }</h4><br />`)
 
             responseStream._transform(Buffer.from(logBody.join('')), 'utf-8', ()=>{})
+        },
+        async getDataBaseData({ responseStream }) {
+
+            let database_data = require('./_dat_/index.json')
+            responseStream._transform(JSON.stringify(database_data), 'utf-8', () => {})
+
+        },
+        async getDatabaseView({ responseStream }) {
+           let database_data = require('./_dat_/index.json')
+            try {
+                let dir = await readdir(__dirname, { withFileTypes: true })
+
+                let databaseList = dir.filter(dirent => dirent.isDirectory() && dirent.name.includes('_dat_'))
+                let database_view = databaseList.map(dirent => {
+
+                    return (`<a data-role="${dirent.name}-${database_data.name}" data-element-group="database-links">
+                    <i data-element-group="database-icons" class="fa-duotone fa-database fa-5x" style="--fa-primary-color: white; --fa-secondary-color: yellow;"></i>
+                    <h4 class="database-view-name">${database_data.name}</h4>
+                </a>`)
+
+
+                })
+                responseStream._transform(database_view.join(''), 'utf-8', () => {})
+            }
+            catch(e) {
+                await Promise.reject(e)
+            }
         }
     }
     return api

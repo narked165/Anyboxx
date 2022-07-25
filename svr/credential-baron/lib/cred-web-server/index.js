@@ -53,6 +53,16 @@ routes.add('/get-user-info', async ({ responseStream, sendHeaders, body}) => {
 })
 
 // routes tests
+routes.add('/get-database-data', async({ responseStream, sendHeaders }) =>{
+    sendHeaders('.json')
+    routes.addExtension('/get-database-data', '.json')
+   await credentialBaron.getDataBaseData({ responseStream })
+})
+routes.add('/get-database-view', async ({ responseStream, sendHeaders }) => {
+    sendHeaders('.html')
+    routes.addExtension('/get-database-view', '.html')
+    await credentialBaron.getDatabaseView({ responseStream })
+})
 routes.add('/khan-web-event', async ({ responseStream, sendHeaders, body }) => {
     routes.addExtension('/khan-web-events', '.html')
     sendHeaders('.html')
@@ -156,8 +166,8 @@ routes.add('/delete-user', async ({responseStream, sendHeaders, body}) => {
 routes.add('/query-user', async ({ responseStream, sendHeaders, body }) => {
     routes.addExtension('/query-user', '.json')
     sendHeaders('.json')
-    let { username } = await body
-    credentialBaron.queryUser(username, responseStream)
+    let options = await body
+    credentialBaron.queryUser({ responseStream, options })
 })
 
 // Server Events
@@ -265,6 +275,11 @@ creds.on('request', (request, response) => {
     let METHOD = request.method.toUpperCase()
 
     credentialBaron.log(`[CREDS-REQUEST] :: INCOMMING REQUEST FOR: ${request.method.toUpperCase()} ${ request.url}`)
+    if (request.method === 'OPTIONS' || request.method === 'options') {
+        let sendHeaders  = ResponseHeaders(request, response)
+        sendHeaders('.json', 200)
+
+    }
     if (request.method === "GET" || request.method === "get") {
         let isGetForbiddenUrl = credentialBaron.checkGetForbiddenUrl(request)
 
@@ -305,7 +320,11 @@ function ResponseHeaders(request, response) {
         status = status || (routes.query(request.url)) ? '200' : '404'
         response.writeHead(status, {
             'Content-Type': contentType,
-            'Access-Control-Allow-Origin': client.origin,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Max-Age': '86400',
+            'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Credentials': 'false',
+            'Access-Control-Allow-Headers': "Cors, Access-Control-Allow-Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Origin",
             'Connection': 'keep-alive',
             'Transfer-Encoding': 'chunked'
         })

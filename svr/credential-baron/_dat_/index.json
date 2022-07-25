@@ -1,0 +1,96 @@
+{
+    "type": "database",
+    "name": "users",
+    "tables": [
+      {
+        "name": "_app_",
+        "type": "string",
+        "isKey": false,
+        "isPointer": true,
+        "auto-increment": false,
+        "option-table": false,
+        "contains-secret": false
+      },
+      {
+        "name": "_cfg_",
+        "type": "table-data",
+        "isKey": false,
+        "isPointer": false,
+        "auto-increment": false,
+        "option-table": true,
+        "contains-secret": false
+      },
+      {
+        "name":"_email_",
+        "type": "string",
+        "isKey": false,
+        "isPointer": false,
+        "auto-increment": false,
+        "option-table": false,
+        "contains-secret": false
+      },
+      {
+        "name": "_firstname_",
+        "type": "string",
+        "isKey": false,
+        "isPointer": false,
+        "auto-increment": false,
+        "option-table": false,
+        "contains-secret": false
+      },
+      {
+        "name": "_lastname_",
+        "type": "string",
+        "isKey": false,
+        "isPointer": false,
+        "auto-increment": false,
+        "option-table": false,
+        "contains-secret": false
+      },
+      {
+        "name": "_key_",
+        "type": "string",
+        "isKey": true,
+        "isPointer": false,
+        "auto-increment": false,
+        "option-table": false,
+        "contains-secret": false
+      },
+      {
+        "name": "_password_",
+        "type": "string",
+        "isKey": false,
+        "isPointer": false,
+        "auto-increment": false,
+        "option-table": false,
+        "contains-secret": true
+      },
+      {
+        "name": "_path_",
+        "type": "table-data",
+        "isKey": false,
+        "isPointer": false,
+        "auto-increment": false,
+        "option-table": true,
+        "contains-secret": false
+      },
+      {
+        "name": "_url_",
+        "type": "table-data",
+        "isKey": false,
+        "isPointer": false,
+        "auto-increment": false,
+        "option-table": true,
+        "contains-secret": false
+      },
+      {
+        "name": "_username_",
+        "type": "string",
+        "isKey": false,
+        "isPointer": false,
+        "auto-increment": false,
+        "option-table": false,
+        "contains-secret": false
+      }
+    ]
+}

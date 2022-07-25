@@ -9,7 +9,7 @@ function createUtilElements() {
         utility = serverUtils[u]
         SERVER_UTIL[u] = SERVER_UTIL[u] || {}
         SERVER_UTIL[u].element = `<div data-role="c-${ utility.app_name }">
-                         <a data-role=${ utility.app_name }><i id="ui-${ u }"data-element-group="utility-icons" class="${ utility.token }"></i><h3>${ utility.app_name }</h3></a>
+                         <a data-role=${ utility.app_name } data-element-group="utility-links"><i id="ui-${ u }" data-element-group="utility-icons" class="${ utility.token }"></i><h3>${ utility.app_name }</h3></a>
                    </div>`
     }
     return SERVER_UTIL
