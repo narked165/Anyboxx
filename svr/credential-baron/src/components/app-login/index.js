@@ -102,6 +102,15 @@ const bLoginSubmit = Controller('b-login-submit', bLoginSubmit => {
         io.emit('clear')
         appLogin.emit('credential_submit')
     }, false)
+    window.addEventListener('keydown', (e) => {
+        if (e.key==='Enter') {
+            e.preventDefault()
+            appLogin.emit('credential_submit')
+        }
+        else {
+            return
+        }
+    })
 
 })
 

@@ -295,3 +295,145 @@ input {
 .deactivate-utility-panel {
     animation: pop-out-box 900ms ease-in forwards 30ms
 }
+.auth-nope {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(55, 55, 55, .85);
+    display: none
+
+}
+.admin-lock {
+    display: inherit;
+}
+.admin-credentials {
+    animation: blunder-tumble 500ms ease-in forwards 30ms;
+}
+.auth-req {
+    display:grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:"ttl ttl ttl"
+                        "ulbl usr uout"
+                        "plbl pas pout"
+                        "aout aout aout"
+                        "ac ac ac";
+    position: absolute;
+    top: 25vh;
+    bottom: 25vh;
+    left: 25vw;
+    right: 25vw;
+    background-color: rgba(55, 55, 55, 1);
+    padding: 2.5%;
+    border: 8px double rgba(255, 165, 55, 1);
+    align-items: baseline;
+    Transform: scale(0, 0);
+
+}
+.auth-title {
+    grid-area: ttl;
+    color: rgba(255, 165, 55, 1);
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-variant: titling-caps;
+    font-size: 1.8em;
+    padding:1.5%;
+
+}
+.auth-username {
+    grid-area: usr;
+    padding: 0 1.5%;
+    font-size: 1.4em;
+    background-color: rgba(55, 55, 55, 1);
+
+}
+.auth-password {
+    grid-area: pas;
+    padding: 0 1.5%;
+    font-size: 1.4em;
+    background-color: rgba(55, 55, 55, 1);
+
+}
+.u-lbl {
+    grid-area: ulbl;
+    padding: 2.5%;
+
+}
+.p-lbl {
+    grid-area: plbl;
+    padding: 2.5%;
+
+}
+.u-out {
+    grid-area: uout;
+    padding: 2.5%;
+    color: red;
+    font-family: "Roboto", sans-serif;
+    margin-left: 15%;
+    text-align: start;
+}
+.p-out {
+    grid-area: pout;
+    color: red;
+    font-family: 'Roboto', sans-serif;
+    text-align: start;
+    margin-left: 15%;
+}
+.auth-out {
+    grid-area: aout;
+    min-width: 60%;
+    max-width: 75%;
+    min-height:20%;
+    padding: 2.5%;
+    color: rgba(255, 55, 25, 1);
+    font-size: 1.5em;
+    margin: 0 auto;
+
+    font-family: 'Source Code Pro', monospace;
+
+}
+.auth-out ul li {
+    text-align: match-parent;
+
+}
+.auth-out ul {
+    list-style: none;
+}
+.auth-control {
+    grid-area: ac;
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: 1fr;
+   align-self: center;
+
+}
+.auth-submit-verify {
+    grid-column-start: 2;
+    grid-column-end: 3;
+
+
+
+}
+.b-auth-exit {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    background-color: rgba(255, 55, 55, 1);
+
+
+}
+.icon {
+    grid-area: icn;
+    --fa-primary-color: rgba(255, 155, 55, 1);
+    --fa-secondary-color: rgba(255, 55, 55, 1);
+    padding-right: 5%;
+}
+
+@keyframes blunder-tumble {
+    from { Transform: scale(0,0); }
+    to { Transform: scale(1,1); }
+}

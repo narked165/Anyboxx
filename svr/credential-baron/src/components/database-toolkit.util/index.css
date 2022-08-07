@@ -34,97 +34,169 @@ input {
     bottom:0;
     left: 0;
     right:0;
-    background-color: rgba(55, 55, 255, 1);
+
     padding: 2%;
     overflow-x: hidden;
     overflow-y: auto;
-    display: grid;
-    grid-template-rows: 10% 80% 10%;
-    grid-template-columns: 1fr;
-    align-items: baseline;
     max-width: 100%;
+    display: grid;
+    grid-template-rows: 10% auto 20%;
+    grid-template-columns: 1fr;
 
 }
+.app-head {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 5% 5% auto 10%;
+    position: absolute;
+    top:0;
+    bottom: 90%;
+    left: 0;
+    right:0;
+    background-color: rgba(255,255,55, 1);
+}
+
+
 
 .util-title {
     font-family: "Roboto", sans-serif;
     font-size: 1.7em;
     font-variant: titling-caps;
-    color: rgba(255, 165, 55, 1);
-    text-align: center;
-    grid-row-start: 1;
-    grid-row-end:2;
-    padding: 1.5%;
+    color: rgba(255, 165, 55, 0);
+
 }
 
 .database-view {
-    grid-row-start: 2;
-    grid-row-end: 3;
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 10%;
-    right:10%;
-    background-color: rgba(255, 255, 55, 1);
-    border: 2px inset rgba(255, 255, 55, 1);
-
-
-
-
-}
-.title-head {
-    position: relative;
-    top: 0;
-    left: 0;
     right: 0;
-    padding: 1% 0;
-    background-color: rgba(255, 255, 55, 1);
+    left: 0;
+    background-color: rgba(255, 255, 55, 0);
+    border: 2px inset rgba(255, 255, 55, 1);
 }
+
 .t-database-view {
     text-align: center;
     font-family: "Roboto", sans-serif;
     color: rgba(55, 55, 55, 1);
     font-variant: titling-caps;
+    grid-column-start: 3;
+    grid-column-end:4;
 }
 .o-database-view {
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: grid;
-    grid-template-columns:10% 30% 10% 40% 5%;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-columns:2.5% 40% 10% 40% 2.5%;
+    grid-template-rows: 10% 30% 50% 10%;
     background-color: rgba(25, 25, 25, 1);
-    width:100%;
-    height: 90%;
-    grid-row-gap: 4px;
+
+
     grid-column-gap: 2.5px;
+    grid-row-gap: 5%;
+    padding: 0.25%;
     align-content: center;
 
 }
 
-.view-control {
+.task-grid {
     position: absolute;
-    top: 90%;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end:2;
+    align-content: center;
+    top: 0;
+    bottom: 25%;
+    left:0;
+    right: 60%;
+    border: 4px double rgba(255, 255, 55, .8);
+    background-color: rgba(55, 55, 55, .8);
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 25% repeat(3, 25%);
+
+
+
+
+}
+.grid-title {
+    color: rgba(55, 55, 55, 1);
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    position: relative;
+    top: 0;
+    bottom: 50%;
     left: 0;
     right: 0;
-    bottom: 0;
+    padding:1%;
+    margin: 1%;
     background-color: rgba(255, 255, 55, 1);
-}
 
-.database-toolkit-io {
-    grid-row-start: 4;
-    grid-row-end: 5;
+    font-weight: 700;
     text-align: center;
-    font-family: 'Source Code Pro', monospace;
+
+}
+
+.grid-button {
     color: rgba(255, 255, 55, 1);
-    font-size: 1.5em;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+   align-content: baseline;
+    position:relative;
+    grid-auto-flow: column;
+    background-color: rgba(55, 55, 55, 1);
+    width: unset;
+    padding: 5%;
+    margin: 1%;
+    border: 2px solid rgba(255, 255, 55, 1);
+    font-size: 1.7em;
+    font-variant: all-petite-caps;
+}
+.grid-button:hover {
+    color: rgba(55, 55, 55, 1);
+    background-color: rgba(255, 255, 55, .7);
+}
+.grid-button i {
+    width: unset;
+    display: inline-block;
+   float: left;
+    padding: 2.5%;
+    --fa-secondary-color: rgba(255, 255, 55, 1);
+    --fa-secondary-opacity: 1;
+    --fa-primary-color: rgba(255, 165, 55, 1);
+
+
+
+
+
+
+}
+.grid-button label {
+
+    display: inline;
+    padding: 2.5%;
+    color: rgba(255, 255, 55, 1);
+    font-family: "Roboto", sans-serif;
+    text-align: left
+
+
+
 }
 
 
-.inc-button {
-    --fa-primary-color: rgba(255, 255, 255, .7);
-    --fa-secondary-color: rgba(55, 65, 55, 1)
 
-}
 
-.o-database-view a {
+
+._dat_-users {
     grid-row-start: 2;
     grid-row-end: 3;
     grid-column-start: 3;
@@ -133,6 +205,12 @@ input {
     display: block;
     margin: 0 auto;
     padding: 2%;
+
+}
+.o-database-view a i {
+    --fa-primary-color: rgba(255, 255, 55, 1);
+    --fa-secondary-color: rgba(165, 165, 165, 1);
+    --fa-secondary-opacity: .5;
 }
 
 
@@ -142,26 +220,61 @@ input {
     padding: 2%;
     font-size: 1.4em;
 }
+.data-callout {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    bottom: 50%;
+    right: 5%;
+    grid-row-start: 2;
+    grid-column-start: 3;
 
+    border-left: 2px dashed rgba(255, 255, 55, 1);
+    border-bottom: 2px dashed rgba(255, 255, 55, 1);
+    display: inherit;
+    Transform: scale(0,0);
+    animation: callout-grow 500ms ease-in forwards 30ms;
+}
 .data-table {
     grid-column-start: 4;
     grid-column-end: 5;
     grid-row-start: 2;
-    grid-row-end: 3;
-    display: grid;
+    grid-row-end: 4;
+    display: none;
     grid-template-columns: 1fr;
     grid-template-rows: 10% 90%;
-    border: 4px solid rgba(255, 255, 55, 1);
-    visibility: hidden;
+    border: 4px double rgba(255, 255, 55, 1);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1%;
+    background-color: rgba(55, 55, 55, 1);
+    Transform: scale(0,0);
+   animation: data-table-grow 500ms ease-in forwards 30ms;
+    align-content: baseline;
+
 }
 
-.show-data-table {
-    visibility: visible;
+.show-table-data {
+    display: grid;
+
+}
+.hide-table-data {
+    display: none;
+
+}
+
+.show-callout {
+    display: block;
+
+}
+.hide-callout {
+    display: none;
+
 }
 .data-list::before {
     content: 'Data Tables:';
     border-bottom: 4px solid rgba(255, 255, 55, 1);
-    font-size: 17pt;
+    font-size: 1.4em;
     color: rgba(255, 255, 55, 1);
 
 }
@@ -170,19 +283,64 @@ input {
     background-color: rgba(255, 255, 55, 1);
     font-family: "Roboto", sans-serif;
     text-align: center;
-
+    padding: 1%;
+    grid-row-start: 1 ;
+    grid-row-end: 2;
 }
 
 .data-list {
-    color: rgba(255, 255, 55, 1);
+    color: rgba(255, 165, 55, 1);
     list-style: none;
     font-family: "Roboto", sans-serif;
-    font-size: 1.2em;
-    margin-left: 20%;
-    margin-top: 5%
+    font-size: 1.3em;
+    margin-left: 10%;
+    margin-top: 2.5%;
+
 }
 
 .data-list li {
-    padding-top: .5%;
-    margin-left: 30%;
+    margin-left: 40%;
 }
+
+@keyframes callout-grow {
+    from {
+
+        Transform: scale(0, 0)
+    }
+    to {
+        right: 50%;
+        Transform: scale(1,1)
+    }
+}
+@keyframes data-table-grow {
+    from {
+        Transform: scale(0, 0)
+    }
+
+    to {
+        Transform: scale(1, 1)
+    }
+}
+
+.database-toolkit-io {
+    grid-column-start: 1;
+    grid-column-end:2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 60%;
+    text-align: center;
+    align-content: center;
+    border: 4px double rgba(255, 255, 55, 1);
+    background-color: rgba(55, 55, 55, .5);
+    color: rgba(255,255,55,1);
+    font-family: 'Source Code Pro', monospace;
+    padding: 1%;
+    font-size: 1.1em;
+    text-wrap: normal;
+
+}
+

@@ -91,6 +91,15 @@
         "auto-increment": false,
         "option-table": false,
         "contains-secret": false
+      },
+      {
+      "name": "_adm_",
+      "type": "Boolean",
+      "isKey": false,
+      "isPointer": false,
+      "auto-increment": false,
+      "option-table": false,
+      "contains-secret": false
       }
     ]
 }

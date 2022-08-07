@@ -40,33 +40,39 @@ const utilTitle = Controller('util-title', (utilTitle) => {
     utilTitle.innerHTML="User Management Utility"
 })
 
-const cQueryUser = buildComponent('query-user', 'query-user-component', InputComponentIncButton, (cQueryUser) => {
+const userAside = Controller('user-aside', (userAside) => {
+    
+})
+
+const username = Controller('user-name', (username) => {
+    
+})
+
+const userFirstname = Controller('user-firstname', (userFirstname) => {
 
 })
 
-const lQueryUser = Controller('l-query-user', (lQueryUser) => {
-    lQueryUser.innerHTML="Query User"
-})
-
-const iQueryUser = Controller('i-query-user', (iQueryUser) => {
+const userLastname = Controller('user-lastname', (userLastname) => {
 
 })
 
-const oQueryUser = Controller('o-query-user', (oQueryUser) => {
+const userEmail = Controller('user-email', (userEmail) => {
 
 })
 
-const bQueryUser = Controller('b-query-user', (bQueryUser) => {
-    bQueryUser.setAttribute('type', 'button')
-    bQueryUser.innerHTML='<i class="fa-duotone fa-arrows-rotate"></i>'
-    bQueryUser.classList.add('fa-2x')
-    bQueryUser.classList.add('inc-button')
-    bQueryUser.addEventListener('click', (e) => {
-        e.preventDefault()
-        userManagementForm.emit('query-user-submit', iQueryUser.value)
-    })
+
+const userApps = Controller('user-apps', (userApps) => {
 
 })
-const userManagementIo = Controller('user-management-io', (userManagementIo) => {
-    userManagementIo.on('message', (m) => userManagementIo.value=m)
+
+const userUrls = Controller('user-urls', (userUrls) => {
+
+})
+
+const userAdmin = Controller('user-admin', (userAdmin) => {
+
+})
+
+const userImage = Controller('user-image', (userImage) => {
+    
 })

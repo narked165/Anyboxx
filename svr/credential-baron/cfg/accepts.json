@@ -1,5 +1,6 @@
 {
   "POST": [
+    "/secure-add-test-users",
     "/verify-user",
     "/add-user",
     "/query-user",
@@ -7,8 +8,9 @@
     "/app-welcome",
     "/get-user-info",
     "/khan-web-event"
+
   ],
   "OPTIONS": ["*"],
   "PUT": ["/modify-user", "/update-password"],
-  "DELETE": ["/delete-user"]
+  "DELETE": ["/delete-user", "/purge-database"]
 }

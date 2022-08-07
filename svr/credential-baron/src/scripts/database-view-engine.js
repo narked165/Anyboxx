@@ -1,8 +1,9 @@
 export { dbViewEngine as default }
 import { default as getDatabaseView } from './get-database-view.js'
 import { default as getDatabaseData } from './get-database-data.js'
+import { default as Controller } from './controller.js'
 
-async function dbViewEngine({ dataList, oDbView }) {
+async function dbViewEngine({ dataList, oDbView }, callback) {
     try {
         let { name, type, tables } = await getDatabaseData()
 
@@ -14,7 +15,7 @@ async function dbViewEngine({ dataList, oDbView }) {
         oDbView.innerHTML += await view
 
 
-
+        return (Controller('_dat_-users', callback))
 
 
     }

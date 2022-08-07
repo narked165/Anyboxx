@@ -7,6 +7,7 @@ import transformTemplate from './scripts/TransformTemlplate.js'
 import { default as componentTemplateTransform } from '../../scripts/component-template-transform.js'
 import { default as updatePassword } from './scripts/update-password.js'
 import { default as serverUtilities } from './scripts/server-utilities.js'
+import { default as secureRequest } from '../../scripts/secure-request.js'
 
 
 window.addEventListener('load', () => {
@@ -99,6 +100,25 @@ window.addEventListener('load', () => {
             appUtilityPanel.innerHTML=''
             appUtilityPanel.emit('deactivate-utility-panel')
         })
+        appMain.on('require-credentials', (app) => {
+            appMain.$state.secureApp = app
+            nope.classList.add('admin-lock')
+            authReq.classList.add('admin-credentials')
+
+        })
+        appMain.on('admin-authentication', async (POST_USER) => {
+            try {
+                console.log(appMain.$state.secureApp)
+                let response = await secureRequest(appMain.$state.secureApp, POST_USER)
+                nope.classList.remove('admin-lock')
+                authReq.classList.remove('admin-credentials')
+                databaseToolkitIo.value = response.status
+            } catch (e) {
+                await Promise.reject(e)
+            }
+        })
+
+
     })
     const appWidget = Controller('app-widget', (appWidget) => {
         appWidget.innerHTML='<i class="fa-solid fa-bars"></i>'
@@ -162,5 +182,56 @@ window.addEventListener('load', () => {
 
     })
 
+    const nope = Controller('nope', (nope) => {
+
+    }, 'auth-nope')
+    const authReq = Controller('auth-req', (authReq) => {
+
+    })
+
+    const authTitle = Controller('auth-title', (authTitle) => {
+        authTitle.innerHTML='<i class="icon fa-duotone fa-square-a-lock fa-2x"></i><span>Administrator Secure Login</span>'
+    })
+
+    const authUsername = Controller('auth-username', (authUsername) => {
+        authUsername.setAttribute('placeholder', 'Username')
+    })
+
+    const authPassword = Controller('auth-password', (authPassword) => {
+        authPassword.setAttribute('placeholder', 'Password')
+        authPassword.setAttribute('type', 'password')
+    })
+    const authOut = Controller('auth-out', (authOut) => {
+        authOut.on('message', (m) => { authOut.firstElementChild.innerHTML+=`<li>${ m }</li>` })
+        authOut.emit('message', `You must authenticate with administrator credentials to use this feature!`)
+    })
+    const authSubmitVerify = Controller('auth-submit-verify', (authSubmitVerify) => {
+        authSubmitVerify.innerHTML = 'Authenticate!'
+        authSubmitVerify.setAttribute('type', 'button')
+        authSubmitVerify.addEventListener('mouseup', (e) => {
+            e.preventDefault()
+            appMain.emit('admin-authentication', {
+                POST_USERNAME: authUsername.value,
+                POST_PASSWORD: authPassword.value
+            })
+        })
+    })
+
+    const uLbl = Controller('u-lbl', (uLbl) => {
+        uLbl.innerHTML='Username'
+    })
+    const pLbl = Controller('p-lbl', (pLbl) => {
+        pLbl.innerHTML='Password'
+    })
+    const uOut = Controller('u-out', (uOut) => {
+        uOut.value='* Required!'
+    })
+    const pOut = Controller('p-out', (pOut) => {
+        pOut.value='* Required!'
+    })
+
+    const bAuthExit = Controller('b-auth-exit', (bAuthExit) => {
+        bAuthExit.innerHTML='Exit Authentication'
+    })
 
 })

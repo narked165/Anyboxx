@@ -17,7 +17,6 @@ async function getDatabaseView() {
         if (response.ok) {
             let data = await response.text()
             let body = await data
-            console.log(body)
             return body
         }
     }

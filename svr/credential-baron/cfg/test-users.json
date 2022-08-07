@@ -6,7 +6,8 @@
     "username": "tHarlo",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": true
   },
 
   {
@@ -16,7 +17,8 @@
     "username": "mBennett",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -26,7 +28,8 @@
     "username": "gKulling",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -36,7 +39,8 @@
     "username": "bHoster",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -46,7 +50,8 @@
     "username": "lHorse",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -56,7 +61,8 @@
     "username": "aHammersly",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -66,7 +72,8 @@
     "username": "kMontague",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -76,7 +83,8 @@
     "username": "rVirso",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -86,7 +94,8 @@
     "username": "tNello",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -96,7 +105,8 @@
     "username": "bForester",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -106,7 +116,8 @@
     "username": "aFrank",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -116,7 +127,8 @@
     "username": "rLester",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -126,7 +138,8 @@
     "username": "aGiavano",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -136,7 +149,8 @@
     "username": "jPerso",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -146,7 +160,8 @@
     "username": "dTorrence",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -156,7 +171,8 @@
     "username": "fHardy",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -166,7 +182,8 @@
     "username": "kLenoore",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -176,7 +193,8 @@
     "username": "lThomas",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -186,7 +204,8 @@
     "username": "cFosterson",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -196,7 +215,8 @@
     "username": "gOdell",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -206,7 +226,8 @@
     "username": "aRice",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -216,7 +237,8 @@
     "username": "sFlowers",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -226,7 +248,8 @@
     "username": "tMcCormic",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -236,7 +259,8 @@
     "username": "rJefferson",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -246,7 +270,8 @@
     "username": "dCapper",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": false
   },
 
   {
@@ -256,6 +281,7 @@
     "username": "mFoss",
     "password": "spork",
     "url": "http://192.168.0.10:9090",
-    "app": "Anyboxx"
+    "app": "Anyboxx",
+    "adm": true
   }
 ]

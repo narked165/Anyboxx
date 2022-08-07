@@ -1,6 +1,6 @@
 import { default as camelCase } from './camel-case.js'
 export { Controller as default }
-function Controller(role, callback) {
+function Controller(role, callback, el_class='') {
     let ELEMENT = document.querySelector(`[data-role="${ role }"]`)
 
     if (ELEMENT === null) {
@@ -8,7 +8,13 @@ function Controller(role, callback) {
         return
     }
     ELEMENT.id = camelCase(role)
-    ELEMENT.className = role
+    if (!el_class || el_class === '' || typeof el_class === 'undefined') {
+        ELEMENT.className = role
+    }
+    else {
+        ELEMENT.className= el_class
+    }
+
     ELEMENT.$state = {}
     ELEMENT.events = {}
     ELEMENT.on = function(handle, handler) {
@@ -34,6 +40,7 @@ function Controller(role, callback) {
     ELEMENT.emit = function(handle, data) {
         ELEMENT.events[handle] && ELEMENT.events[handle].forEach(h=> h.call(this, data))
     }
+
     callback(ELEMENT)
     return ELEMENT
 }

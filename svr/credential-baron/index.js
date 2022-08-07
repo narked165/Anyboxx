@@ -3,7 +3,7 @@ const { open, readFile, readdir, rm } = require('fs/promises')
 const { join: joinPath, parse: parsePath } = require('path')
 const {pipeline} = require('stream')
 const { khan_remote } = require('./khan_remote.js')
-
+const { AUTH_REQUIRED } = require('./cfg/auth_required.json')
 const { LogAgent } = require('./lib/log-agent')
 const { data_path_index, user_data_keys, user_key_index } = require('./_dat_/_cfg_/index.json')
 const METHOD = require('./cfg/accepts.json')
@@ -15,7 +15,7 @@ const { createUniqueKey } = require('./lib/key-creator')
 const { createFilePathIndex } = require('./lib/file-path-index')
 const { createDataFile } = require('./lib/create-data-file')
 const {safeRead} = require('./lib/safe-read')
-const {_username_} = require('./cfg/file-path-index.json')
+const {_username_, _url_} = require('./cfg/file-path-index.json')
 const { appWelcomeTemplate } = require('./src/components/app-welcome/app-welcome.js')
 const {safeWrite} = require('./lib/safe-write')
 const { serverUtilApp, serverUtilApi } = require('./lib/server-utils')
@@ -215,6 +215,30 @@ const _CredentialBaron =  function() {
 
                 }
             },
+            _adm_: {
+                _adm: {},
+                add(id, value) {
+                    this._adm[id] = this._adm[id] || value
+
+                },
+
+                query(id) {
+                    return id in this._adm
+                },
+
+                remove(id) {
+                    delete this._adm[id]
+                },
+
+                update(id, value) {
+                    this._adm[id] = value
+
+                },
+                select(id) {
+                    return this._adm[id]
+                }
+            },
+
             filePathIndex: {
                 set (value) {
                     this.$FILE_PATH_INDEX = value
@@ -264,7 +288,7 @@ const _CredentialBaron =  function() {
                 return Object.keys(this.events)
             },
 
-            async create({firstname, lastname, email, username, password, app, url}) {
+            async create({firstname, lastname, email, username, password, app, url, adm}) {
 
                 if (this._key_.query(username)) {
                     this.log(`[CB_CREATE] :: User: ${username}, already exists.`)
@@ -280,8 +304,9 @@ const _CredentialBaron =  function() {
                 this._password_.add(uniqueKey, password)
                 this._app_.add(uniqueKey, app)
                 this._url_.add(uniqueKey, url)
+                this._adm_.add(uniqueKey, adm)
                 try {
-                    await this.emit('create_new_user', { uniqueKey, user: { firstname, lastname, email, username, password, app, url }})
+                    await this.emit('create_new_user', { uniqueKey, user: { firstname, lastname, email, username, password, app, url, adm }})
 
                 } catch (e) {
                     await Promise.reject(e)
@@ -324,8 +349,8 @@ const _CredentialBaron =  function() {
 
 
             async write({ uniqueKey, user}) {
-                let { firstname, lastname, email, username, password, app, url } = user
-               let { _firstname_, _lastname_, _email_, _username_, _password_, _url_, _app_ } = require('./cfg/file-path-index.json'),
+                let { firstname, lastname, email, username, password, app, url, adm } = user
+               let { _firstname_, _lastname_, _email_, _username_, _password_, _url_, _app_, _adm_ } = require('./cfg/file-path-index.json'),
                    filename = `${ uniqueKey }.json`
                 try {
                     await this.writeKey(uniqueKey, username)
@@ -336,6 +361,7 @@ const _CredentialBaron =  function() {
                     await createDataFile(joinPath(_password_, filename), JSON.stringify({ password }))
                     await createDataFile(joinPath(_app_, filename), JSON.stringify({ app }))
                     await createDataFile(joinPath(_url_, filename), JSON.stringify({ url }))
+                    await createDataFile(joinPath(_adm_, filename), JSON.stringify({ adm }))
 
                 }
                 catch(e) {
@@ -474,7 +500,7 @@ const _CredentialBaron =  function() {
 
             async restore() {
                 let keys = await this.restoreKeys()
-                let dirs = ['_firstname_', '_lastname_', '_email_', '_username_', '_password_', '_url_', '_app_'],
+                let dirs = ['_firstname_', '_lastname_', '_email_', '_username_', '_password_', '_url_', '_app_', '_adm_'],
                     r_location = joinPath(__dirname, '_dat_')
 
                 for await (d of dirs) {
@@ -515,19 +541,15 @@ const _CredentialBaron =  function() {
 
             async initServer() {
                 this.enable_syncData()
-
-
                 try {
-
-
                   await this.createFilePathIndex()
-                 //await this.purge()
-              //let userList = await this.createTestUsers()
-                //  console.log(await userList)
-               let restoreServer = await CredentialBaron.restore()
-                   this.log(`[INIT_SERVER] :: Restored Keys: ${restoreServer}\n`)
+            //   await this.purge()
+                //    let { status, userList } = await this.createTestUsers()
+              //  console.log(status, userList)
+              let restoreServer = await CredentialBaron.restore()
+              this.log(`[INIT_SERVER] :: Restored Keys: ${restoreServer}\n`)
 
-              // return restoreServer
+              return restoreServer
                 } catch (e) {
 
                     console.error(e)
@@ -540,8 +562,8 @@ const _CredentialBaron =  function() {
 
                 try {
                     let userList = users.map(async u => await CredentialBaron.create(u))
-                    await Promise.all(userList)
-                    return userList
+
+                    return { status: 'Purge Completed', value: await Promise.all(userList) }
 
                 }
                 catch (e) {
@@ -624,6 +646,17 @@ function api() {
             }
 
         },
+        async purgeDatabase({ responseStream, options}) {
+            let { username, password } =  options
+            try {
+                //await CredentialBaron.purge()
+                responseStream._transform(JSON.stringify({ username, opperation: 'purge', status: 'complete' }), 'utf-8', ()=>{})
+            }
+
+            catch(e) {
+                await Promise.reject(e)
+            }
+        },
         async purgeDB(responseStream) {
             let response
             try {
@@ -666,7 +699,8 @@ function api() {
                     CredentialBaron._username_.select(auth_key),
                     CredentialBaron._password_.select(auth_key),
                     CredentialBaron._url_.select(auth_key),
-                    CredentialBaron._app_.select(auth_key)
+                    CredentialBaron._app_.select(auth_key),
+                    CredentialBaron._adm_.select(auth_key)
                 ]
                 return AUTH_USER
             }
@@ -745,7 +779,7 @@ function api() {
                user: username,
                value: CredentialBaron._key_.query(username)
            })
-           responseStream._transform(Buffer.from(reasponse), 'utf-8', e => e ?console.error(e) : !e)
+           responseStream._transform(Buffer.from(response), 'utf-8', e => e ?console.error(e) : !e)
         },
 
         async updatePassword({ responseStream, options}) {
@@ -835,7 +869,7 @@ function api() {
                 let database_view = databaseList.map(dirent => {
 
                     return (`<a data-role="${dirent.name}-${database_data.name}" data-element-group="database-links">
-                    <i data-element-group="database-icons" class="fa-duotone fa-database fa-5x" style="--fa-primary-color: white; --fa-secondary-color: yellow;"></i>
+                    <i data-element-group="database-icons" class="fa-duotone fa-database fa-5x"></i>
                     <h4 class="database-view-name">${database_data.name}</h4>
                 </a>`)
 
@@ -846,7 +880,40 @@ function api() {
             catch(e) {
                 await Promise.reject(e)
             }
-        }
+        },
+        authRequired({ url, method }) {
+            this.log(`[AUTH_REQUIRED] :: URL: ${ url }, REQUIRED TO AUTHENTICATE: ${ AUTH_REQUIRED.includes(url)}`)
+            return AUTH_REQUIRED.includes(url)
+        },
+        authenticateAdmin(options) {
+            let { POST_USERNAME, POST_PASSWORD } = options
+            let usr = this.loadUser(POST_USERNAME)
+            let { authenticate }= require('./lib/auth-required')
+
+
+            return authenticate(options, usr)
+        },
+       async secureAddTestUsers({ responseStream, options }) {
+            try {
+                let authenticate = this.authenticateAdmin(options)
+
+                let response
+                if(authenticate){
+                   let { status, value } = await CredentialBaron.createTestUsers()
+                    response = JSON.stringify(await status)
+                }
+                else {
+                   response = JSON.stringify({ status: `${ options.POST_USERNAME }, is not an admin. `})
+                }
+
+
+
+                responseStream._transform(response, 'utf-8', ()=>{})
+            }
+            catch(e) {
+                await Promise.reject(e)
+            }
+       }
     }
     return api
 }

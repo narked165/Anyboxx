@@ -31,7 +31,6 @@ async function startServices() {
 
 
 
-
 routes.add('/error404', ({ responseStream, sendHeaders, request }) => {
     let errorResponse = `
         <div style=" margin:0 auto; display: block; text-align: center; font-family: 'Roboto', sans-serif">
@@ -53,12 +52,17 @@ routes.add('/get-user-info', async ({ responseStream, sendHeaders, body}) => {
 })
 
 // routes tests
+routes.add('/secure-add-test-users', async ({ responseStream, sendHeaders, body  }) => {
+    sendHeaders('.json')
+    let options = await body
+    await credentialBaron.secureAddTestUsers({ responseStream, options })
+})
 routes.add('/get-database-data', async({ responseStream, sendHeaders }) =>{
     sendHeaders('.json')
     routes.addExtension('/get-database-data', '.json')
    await credentialBaron.getDataBaseData({ responseStream })
 })
-routes.add('/get-database-view', async ({ responseStream, sendHeaders }) => {
+routes.add('/get-database-view', async ({ responseStream, sendHeaders}) => {
     sendHeaders('.html')
     routes.addExtension('/get-database-view', '.html')
     await credentialBaron.getDatabaseView({ responseStream })
@@ -78,6 +82,13 @@ routes.add('/app-welcome',  async ({ responseStream, sendHeaders, body}) => {
 })
 
 //  routes for the Router
+
+routes.add('/purge-database', async ({ responseStream, sendHeaders, body }) => {
+    routes.addExtension('/purge-database', '.json')
+    sendHeaders('.json')
+    let options = await body
+    await credentialBaron.purgeDatabase({ responseStream, options})
+})
 routes.add('/retrieve-logs', ({ responseStream, sendHeaders}) => {
     sendHeaders('.html')
     routes.addExtension('/retrieve-logs', '.html')
@@ -214,9 +225,9 @@ creds.on('POST', async ( { request, response, responseStream } ) => {
         }
 
     }
-catch(e) {
+    catch(e) {
+        await Promise.reject(e)
 
-            await Promise.reject(e)
        }
 
 
@@ -245,7 +256,7 @@ creds.on('PUT', async ( { request, response, responseStream }) => {
 })
 
 creds.on('DELETE', async ({ request, response, responseStream }) => {
-    let sendHeader = ResponseHeaders(request, response)
+    let sendHeaders = ResponseHeaders(request, response)
 
     try {
         let buffer = []
@@ -261,7 +272,7 @@ creds.on('DELETE', async ({ request, response, responseStream }) => {
     }
     catch(e) {
         responseStream.end(Buffer.from(`HTTP/1.1  ERROR  403\nFORBIDDEN\nThe url requested: ${ request.url }, can not accept an empty request.\n  `))
-
+        await Promise.reject(e)
     }
 })
 
@@ -271,8 +282,16 @@ creds.on('listening', () => console.info(`creds listening at http://${ EN0_INTER
 creds.on('listening', () => credentialBaron.log('[CREDS_SERVER]: Server is online.'))
 creds.on('request', (request, response) => {
     let responseStream = ResponseStream()
+
+    pipeline (
+        responseStream,
+        response,
+        () => {
+        }
+    )
     let data = {request, response, responseStream}
     let METHOD = request.method.toUpperCase()
+
 
     credentialBaron.log(`[CREDS-REQUEST] :: INCOMMING REQUEST FOR: ${request.method.toUpperCase()} ${ request.url}`)
     if (request.method === 'OPTIONS' || request.method === 'options') {
@@ -280,26 +299,27 @@ creds.on('request', (request, response) => {
         sendHeaders('.json', 200)
 
     }
-    if (request.method === "GET" || request.method === "get") {
+
+    else
+        if (request.method === "GET" || request.method === "get") {
         let isGetForbiddenUrl = credentialBaron.checkGetForbiddenUrl(request)
 
-        if (METHOD === 'GET' && isGetForbiddenUrl) {
-            response.end(`HTTP/1.1  ERROR  405\nMETHOD NOT ALLIOWED\nThe url ${request.url} may not be accessed with the GET method.`)
-        }
+            if (METHOD === 'GET' && isGetForbiddenUrl) {
+                response.end(`HTTP/1.1  ERROR  405\nMETHOD NOT ALLIOWED\nThe url ${request.url} may not be accessed with the GET method.`)
+            }
+
     }
      else if (METHOD !== 'GET' && !credentialBaron.checkUrlMethodIncomming(request)) {
             credentialBaron.log(credentialBaron.checkUrlMethodIncomming(request))
             response.end(`HTTP/1.1  ERROR  405\nMETHOD NOT ALLOWED\nmethod: ${request.method} is not allowed for the url: ${request.url}\n${new Date().toLocaleTimeString()}`)
     }
 
-            pipeline (
-                responseStream,
-                response,
-                () => {
-                }
-            )
+     creds.emit(METHOD, data)
 
-            creds.emit(METHOD, data)
+
+
+
+
 })
 
 

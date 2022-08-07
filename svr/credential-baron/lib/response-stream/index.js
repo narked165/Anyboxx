@@ -10,9 +10,11 @@ exports.ResponseStream = function() {
             this.push(chunk, encoding)
             this.push(null)
 
-        }
+        },
+
+
     })
-    responseStream.on('error', console.warn)
+    responseStream.on('error', () => {})
     return responseStream
 }
 
